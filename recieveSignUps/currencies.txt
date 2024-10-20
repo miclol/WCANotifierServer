@@ -1,0 +1,161 @@
+United Arab Emirates Dirham,AED,2
+Afghan Afghani,AFN,2
+Albanian Lek,ALL,2
+Armenian Dram,AMD,2
+Netherlands Antillian Guilder,ANG,2
+Angolan Kwanza,AOA,2
+Argentine Peso,ARS,2
+Australian Dollar,AUD,2
+Aruban Florin,AWG,2
+Azerbaijani Manat,AZN,2
+Bosnia and Herzegovina Convertible Mark,BAM,2
+Barbados Dollar,BBD,2
+Bangladeshi Taka,BDT,2
+Bulgarian Lev,BGN,2
+Bahraini Dinar,BHD,2
+Burundian Franc,BIF,2
+Bermudian Dollar,BMD,2
+Brunei Dollar,BND,2
+Bolivian Boliviano,BOB,2
+Brazilian Real,BRL,2
+Bahamian Dollar,BSD,2
+Bhutanese Ngultrum,BTN,2
+Botswana Pula,BWP,2
+Belarusian Ruble,BYN,2
+Belize Dollar,BZD,2
+Canadian Dollar,CAD,2
+Congolese Franc,CDF,2
+Swiss Franc,CHF,2
+Chilean Peso,CLP,2
+Chinese Renminbi Yuan,CNY,2
+Colombian Peso,COP,2
+Costa Rican Colón,CRC,2
+Cuban Peso,CUP,2
+Cape Verdean Escudo,CVE,0
+Czech Koruna,CZK,2
+Djiboutian Franc,DJF,0
+Danish Krone,DKK,2
+Dominican Peso,DOP,2
+Algerian Dinar,DZD,2
+Egyptian Pound,EGP,2
+Eritrean Nakfa,ERN,2
+Ethiopian Birr,ETB,2
+Euro,EUR,2
+Fiji Dollar,FJD,2
+Falkland Islands Pound,FKP,2
+Faroese Króna,FOK,2
+British Pound,GBP,2
+Georgian Lari,GEL,2
+Guernsey Pound,GGP,2
+Ghanaian Cedi,GHS,2
+Gibraltar Pound,GIP,2
+Gambian Dalasi,GMD,2
+Guinean Franc,GNF,0
+Guatemalan Quetzal,GTQ,2
+Guyanese Dollar,GYD,2
+Hong Kong Dollar,HKD,2
+Honduran Lempira,HNL,2
+Croatian Kuna,HRK,2
+Haitian Gourde,HTG,2
+Hungarian Forint,HUF,2
+Indonesian Rupiah,IDR,0
+Israeli New Sheqel,ILS,2
+Manx Pound,IMP,2
+Indian Rupee,INR,2
+Iraqi Dinar,IQD,3
+Iranian Rial,IRR,2
+Icelandic Króna,ISK,2
+Jersey Pound,JEP,2
+Jamaican Dollar,JMD,2
+Jordanian Dinar,JOD,3
+Japanese Yen,JPY,0
+Kenyan Shilling,KES,2
+Kyrgyzstani Som,KGS,2
+Cambodian Riel,KHR,2
+Kiribati Dollar,KID,2
+Comorian Franc,KMF,0
+South Korean Won,KRW,0
+Kuwaiti Dinar,KWD,3
+Cayman Islands Dollar,KYD,2
+Kazakhstani Tenge,KZT,2
+Lao Kip,LAK,2
+Lebanese Pound,LBP,2
+Sri Lankan Rupee,LKR,2
+Liberian Dollar,LRD,2
+Lesotho Loti,LSL,2
+Libyan Dinar,LYD,3
+Moroccan Dirham,MAD,2
+Moldovan Leu,MDL,2
+Malagasy Ariary,MGA,2
+Macedonian Denar,MKD,2
+Burmese Kyat,MMK,2
+Mongolian Tögrög,MNT,2
+Macanese Pataca,MOP,2
+Mauritanian Ouguiya,MRU,2
+Mauritian Rupee,MUR,2
+Maldivian Rufiyaa,MVR,2
+Malawian Kwacha,MWK,2
+Mexican Peso,MXN,2
+Malaysian Ringgit,MYR,2
+Mozambican Metical,MZN,2
+Namibian Dollar,NAD,2
+Nigerian Naira,NGN,2
+Nicaraguan Córdoba,NIO,2
+Norwegian Krone,NOK,2
+Nepalese Rupee,NPR,2
+New Zealand Dollar,NZD,2
+Omani Rial,OMR,3
+Panamanian Balboa,PAB,2
+Peruvian Sol,PEN,2
+Papua New Guinean Kina,PGK,2
+Philippine Peso,PHP,2
+Pakistani Rupee,PKR,2
+Polish Złoty,PLN,2
+Paraguayan Guaraní,PYG,0
+Qatari Riyal,QAR,2
+Romanian Leu,RON,2
+Serbian Dinar,RSD,2
+Russian Ruble,RUB,2
+Rwandan Franc,RWF,0
+Saudi Riyal,SAR,2
+Solomon Islands Dollar,SBD,2
+Seychellois Rupee,SCR,2
+Sudanese Pound,SDG,2
+Swedish Krona,SEK,2
+Singapore Dollar,SGD,2
+Saint Helena Pound,SHP,2
+Sierra Leonean Leone,SLE,2
+Somali Shilling,SOS,2
+Surinamese Dollar,SRD,2
+South Sudanese Pound,SSP,2
+São Tomé and Príncipe Dobra,STN,2
+Syrian Pound,SYP,2
+Eswatini Lilangeni,SZL,2
+Thai Baht,THB,2
+Tajikistani Somoni,TJS,2
+Turkmenistan Manat,TMT,2
+Tunisian Dinar,TND,3
+Tongan Paʻanga,TOP,2
+Turkish Lira,TRY,2
+Trinidad and Tobago Dollar,TTD,2
+Tuvaluan Dollar,TVD,2
+New Taiwan Dollar,TWD,2
+Tanzanian Shilling,TZS,2
+Ukrainian Hryvnia,UAH,2
+Ugandan Shilling,UGX,0
+United States Dollar,USD,2
+Uruguayan Peso,UYU,2
+Uzbekistan Som,UZS,2
+Venezuelan Bolívar,VES,2
+Vietnamese Đồng,VND,0
+Vanuatu Vatu,VUV,0
+Samoan Tālā,WST,2
+Central African CFA Franc,XAF,0
+East Caribbean Dollar,XCD,2
+Special Drawing Rights,XDR,2
+West African CFA franc,XOF,0
+CFP Franc,XPF,0
+Yemeni Rial,YER,2
+South African Rand,ZAR,2
+Zambian Kwacha,ZMW,2
+Zimbabwean Dollar,ZWL,2
