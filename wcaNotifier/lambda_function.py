@@ -32,17 +32,21 @@ def lambda_handler(event, context):
         
         wcaComps = resource("dynamodb").Table("wcaCompetitions")
         loggedComps = wcaComps.get_item(Key={"comps": "competitions"})["Item"]["currComps"]
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'}
-        res = get("https://www.worldcubeassociation.org/competitions?region=all&search=&year=all+years&state=by_announcement&from_date=&to_date=&delegate=&display=list", headers=headers)
-        print(res.status_code)
-        res.raise_for_status()
-        currentComps = BeautifulSoup(res.content, features="html.parser").findAll("li", class_="list-group-item not-past")
+        page = 0
         newComps, currComps = set(), set()
-        for curComp in currentComps:
-            compLink = curComp.find(href=True)['href']
-            if compLink not in loggedComps:
-                newComps.add(compLink)
-            currComps.add(compLink)
+        while True: # Loop just in case there are more than 25 new competitions announced between runs
+            page += 1
+            res = get(f"https://www.worldcubeassociation.org/api/v0/competition_index?include_cancelled=false&sort=-announced_at,name&page={page}")
+            res.raise_for_status()
+            currentComps = loads(res.text)
+            for curComp in currentComps:
+                compLink = f"/competitions/{curComp['id']}"
+                if compLink not in loggedComps:
+                    newComps.add(compLink)
+                currComps.add(compLink)
+            if len(newComps) < len(currComps):
+                break
+            sleep(0.5)
         print(currComps)
         wcaComps.put_item(Item={"comps": "competitions", "currComps": currComps})
         print(newComps)
