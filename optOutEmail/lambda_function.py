@@ -7,7 +7,7 @@ from urllib.parse import parse_qs
 def lambda_handler(event, context):
     httpSource = event["requestContext"]["http"]
     if httpSource["path"] == "/":
-        if httpSource["method"] == "GET":
+        if httpSource["method"] in ("GET", "POST"):
             try:
                 payload = parse_qs(event["rawQueryString"])
                 uuid = payload["uuid"][0]

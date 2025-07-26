@@ -111,7 +111,7 @@ def lambda_handler(event, context):
             equalCheckSubset = {"events", "latitude", "longitude", "radius", "crossCountry", "fee"} 
             for ar in alreadyReg:
                 if not ar["isVerified"]:
-                    return {"statusCode": 403, "headers": {"content-type": "text/html"}, "body": "Please verify your email of a request you made before before making more requests."}
+                    return {"statusCode": 403, "headers": {"content-type": "text/html"}, "body": "Please verify your email of a request you made before before making more requests. If you did not see an email, check spam or try again tomorrow."}
                 if {x: payload[x] for x in equalCheckSubset} == {x: ar[x] for x in equalCheckSubset}:
                     start, end = payload["start"], payload["end"]
                     if ((start and ar["start"] and start >= ar["start"]) or not (start or ar["start"])) and ((end and ar["end"] and end <= ar["end"]) or not (end or ar["end"])):
@@ -119,8 +119,8 @@ def lambda_handler(event, context):
             print(payload)
             users.put_item(Item=payload)
             content = f"<html><head></head><body><h1>WCA Notifier Verification Email</h1><p>To verify that you are actually trying to recieve notifications for WCA Competitions, please confirm <a href=\"https://nfty5lb2qe4bbhpwmul7u6gp6m0ffohy.lambda-url.us-east-2.on.aws/?uuid={uuid}\">here</a>. This verification link will expire in 24 hours.<br><br>If you did not sign up for notifications, do not click the link, as somebody probably mistyped their email.<br>If the hyperlink doesn't work, go to this link: https://nfty5lb2qe4bbhpwmul7u6gp6m0ffohy.lambda-url.us-east-2.on.aws/?uuid={uuid}<br><hr><br>To Opt-out of these notification emails, <a href=\"https://m4q4s5pxsarghztkazrode4mdq0dtfli.lambda-url.us-east-2.on.aws/?uuid={uuid}\">click here</a>.<br><br>To report any issues, please go <a href=\"https://github.com/miclol/WCANotifier/issues\">here</a>.</p></body></html>"
-            client("ses").send_email(Destination={"ToAddresses": [email]}, Message={"Body": {"Html": {"Data": content}}, "Subject": {"Data": "WCA Notifier Verification Email"}}, Source="wcaalert@gmail.com")
-            return {"statusCode": 200, "headers": {"content-type": "text/html"}, "body": "Thank you for using this service. Please check your email for a verification email."}
+            client("sesv2").send_email(Destination={"ToAddresses": [email]}, Content={"Simple": {"Body": {"Html": {"Data": content}}, "Subject": {"Data": "WCA Notifier Verification Email"}, "Headers": [{"Name": "List-Unsubscribe", "Value": f"<https://m4q4s5pxsarghztkazrode4mdq0dtfli.lambda-url.us-east-2.on.aws/?uuid={uuid}>"}, {"Name": "List-Unsubscribe-Post", "Value": "List-Unsubscribe=One-Click"}]}}, FromEmailAddress="wcaalert@gmail.com")
+            return {"statusCode": 200, "headers": {"content-type": "text/html"}, "body": "Thank you for using this service. Please check your email for a verification email. If you do not see an email, check spam or try again later."}
         else:
             return {"statusCode": 405, "headers": {"content-type": "text/html"}, "body": "Invalid HTTP Method!"}
     else:

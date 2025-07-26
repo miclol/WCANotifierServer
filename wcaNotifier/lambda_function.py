@@ -26,10 +26,10 @@ def lambda_handler(event, context):
                 currCodes[name] = code
                 currDecs[code] = decs
             f.close()
-        
+    
         baseCurr = "USD"
         rates = loads(get(f"https://v6.exchangerate-api.com/v6/{environ['CURR_CONV_KEY']}/latest/{baseCurr}").text)["conversion_rates"]
-        
+    
         wcaComps = resource("dynamodb").Table("wcaCompetitions")
         loggedComps = wcaComps.get_item(Key={"comps": "competitions"})["Item"]["currComps"]
         page = 0
@@ -114,7 +114,7 @@ def lambda_handler(event, context):
         print(compData)
         
         eventTrans = {"222": "2x2x2 Cube", "333": "3x3x3 Cube", "444": "4x4x4 Cube", "555": "5x5x5 Cube", "666": "6x6x6 Cube", "777": "7x7x7 Cube", "333bf": "3x3x3 Blindfold", "444bf": "4x4x4 Blindfold", "555bf": "5x5x5 Blindfold", "333mbf": "3x3x3 Multi-Blind", "333fm": "3x3x3 Fewest Moves", "333oh": "3x3x3 One-handed", "clock": "Clock", "minx": "Megaminx", "pyram": "Pyraminx", "skewb": "Skewb", "sq1": "Square-1"}
-        ses = client("ses")
+        ses = client("sesv2")
         tf = TimezoneFinder()
         emailUUIDs = {}
         emailNotif = defaultdict(set)
@@ -146,7 +146,7 @@ def lambda_handler(event, context):
                 else:
                     email += f"<li>No Fee Data Available.</li></ul>{'<strong>Note that this event might be sent in error due to the organizer not giving a proper address or it has multiple addresses.</strong><br><br>' if (cData['approxLoc'] or cData['unknownLoc']) else '<br>'}</li>"
             email += f"</ul><br><p>To Opt-out of these notification emails, <a href=\"https://m4q4s5pxsarghztkazrode4mdq0dtfli.lambda-url.us-east-2.on.aws/?uuid={emailUUIDs[recip]}\">click here</a>.<br><br><br>To report any issues, please go <a href=\"https://github.com/miclol/WCANotifier/issues\">here</a>.</p></body></html>"
-            ses.send_email(Destination={"ToAddresses": [recip]}, Message={"Body": {"Html": {"Data": email}}, "Subject": {"Data": "WCA Notification"}}, Source="wcaalert@gmail.com")
+            ses.send_email(Destination={"ToAddresses": [recip]}, Message={"Simple": {"Body": {"Html": {"Data": email}}, "Subject": {"Data": "WCA Notification"}, "Headers": [{"Name": "List-Unsubscribe", "Value": f"<https://m4q4s5pxsarghztkazrode4mdq0dtfli.lambda-url.us-east-2.on.aws/?uuid={emailUUIDs[recip]}>"}, {"Name": "List-Unsubscribe-Post", "Value": "List-Unsubscribe=One-Click"}]}}, FromEmailAddress="wcaalert@gmail.com")
             sleep(0.1)
     except:
-        client("ses").send_email(Destination={"ToAddresses": ["wcaalert@gmail.com"]}, Message={"Body": {"Text": {"Data": format_exc()}}, "Subject": {"Data": "WCA Notification Failed!"}}, Source="wcaalert@gmail.com")
+        ses.send_email(Destination={"ToAddresses": ["wcaalert@gmail.com"]}, Message={"Simple": {"Body": {"Text": {"Data": format_exc()}}, "Subject": {"Data": "WCA Notification Failed!"}}}, FromEmailAddress="wcaalert@gmail.com")
