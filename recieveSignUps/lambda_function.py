@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         if "origin" not in headers:
             return {"statusCode": 401}
         else:
-            if headers["origin"] != "https://miclol.github.io":
+            if headers["origin"] != "https://www.wcanotifier.com":
                 return {"statusCode": 401}
         if httpSource["method"] == "POST":
             payload = parse_qs(b64decode(event["body"]).decode())
