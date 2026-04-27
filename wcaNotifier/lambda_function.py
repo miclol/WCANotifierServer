@@ -11,7 +11,7 @@ from json import loads
 from requests import get
 from re import DOTALL, findall, search
 from time import sleep
-from timezonefinder import TimezoneFinder
+from timezonefinder import timezone_at
 from traceback import format_exc
 
 
@@ -68,6 +68,7 @@ def lambda_handler(event, context):
             evStart, evEnd = compEvents[0].begin, compEvents[-1].end
             city = search(r"(?<=>).+(?=<)", str(rawDetails[1])).group()
             country = city.split(", ")[-1]
+            # ============================= Politics Made Me Do This
             if country == "Chinese Taipei":
                 country = "Taiwan"
             elif country == "China":
@@ -76,6 +77,7 @@ def lambda_handler(event, context):
                     country = "Hong Kong"
                 elif area == "Macau":
                     country = "Macau"
+            # ============================= Can't Have Nice Things These Days
             lat, lng = map(float, search(r"-*\d+\.\d+,-*\d+\.\d+", str(rawDetails[3])).group().split(','))
             reqText = str(comp.find("div", id="registration_requirements_text"))
             if "Registering for this competition is free." not in reqText:
@@ -115,7 +117,6 @@ def lambda_handler(event, context):
         
         eventTrans = {"222": "2x2x2 Cube", "333": "3x3x3 Cube", "444": "4x4x4 Cube", "555": "5x5x5 Cube", "666": "6x6x6 Cube", "777": "7x7x7 Cube", "333bf": "3x3x3 Blindfold", "444bf": "4x4x4 Blindfold", "555bf": "5x5x5 Blindfold", "333mbf": "3x3x3 Multi-Blind", "333fm": "3x3x3 Fewest Moves", "333oh": "3x3x3 One-handed", "clock": "Clock", "minx": "Megaminx", "pyram": "Pyraminx", "skewb": "Skewb", "sq1": "Square-1"}
         ses = client("sesv2")
-        tf = TimezoneFinder()
         emailUUIDs = {}
         emailNotif = defaultdict(set)
         for user, comps in userNotif.items():
@@ -126,7 +127,7 @@ def lambda_handler(event, context):
             email = "<html><head></head><body><h1>WCA Competition Notification</h1><p>There are competitions that might be of relevance to you: (For more information on any of these competitions, click the hyperlink for the corresponding competition.)</p><ul>"
             for comp in comps:
                 cData = compData[comp]
-                compTz = tf.timezone_at(lat=cData["lat"], lng=cData["lng"])
+                compTz = timezone_at(lat=cData["lat"], lng=cData["lng"])
                 email += f"<li><a href=\"https://worldcubeassociation.org{comp}\">{cData['name']}</a><ul><li>Location: {cData['city']}</li><li>Events: {', '.join([eventTrans[i] for i in cData['events']])}</li><li>Competition Period: {cData['start'].to(compTz).format('YYYY-MM-DD HH:mm:ss [GMT]ZZ')} - {cData['end'].to(compTz).format('YYYY-MM-DD HH:mm:ss [GMT]ZZ')}</li>"
                 origFee = cData["origFee"]
                 if origFee != None:
