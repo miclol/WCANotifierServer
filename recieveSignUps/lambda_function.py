@@ -43,7 +43,7 @@ def lambda_handler(event, context):
                     return {"statusCode": 403, "headers": {"content-type": "text/html"}, "body": "Invalid Captcha Key!"}
                 payload.pop("g-recaptcha-response")
                 payload["events"] = set(events.split(','))
-                if payload["events"].isdisjoint({"222", "333", "444", "555", "666", "777", "333bf", "444bf", "555bf", "333mbf", "333fm", "333oh", "clock", "minx", "pyram", "skewb", "sq1"}):
+                if payload["events"].isdisjoint({"222", "333", "444", "555", "666", "777", "333bf", "444bf", "555bf", "333mbf", "333fm", "333oh", "clock", "minx", "pyram", "skewb", "sq1", "fto"}):
                     raise Exception
                 start, end = payload["start"], payload["end"]
                 payload["start"] = Decimal(int(start)) if start else None

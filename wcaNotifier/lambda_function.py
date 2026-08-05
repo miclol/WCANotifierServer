@@ -115,7 +115,7 @@ def lambda_handler(event, context):
             sleep(1)
         print(compData)
         
-        eventTrans = {"222": "2x2x2 Cube", "333": "3x3x3 Cube", "444": "4x4x4 Cube", "555": "5x5x5 Cube", "666": "6x6x6 Cube", "777": "7x7x7 Cube", "333bf": "3x3x3 Blindfold", "444bf": "4x4x4 Blindfold", "555bf": "5x5x5 Blindfold", "333mbf": "3x3x3 Multi-Blind", "333fm": "3x3x3 Fewest Moves", "333oh": "3x3x3 One-handed", "clock": "Clock", "minx": "Megaminx", "pyram": "Pyraminx", "skewb": "Skewb", "sq1": "Square-1"}
+        eventTrans = {"222": "2x2x2 Cube", "333": "3x3x3 Cube", "444": "4x4x4 Cube", "555": "5x5x5 Cube", "666": "6x6x6 Cube", "777": "7x7x7 Cube", "333bf": "3x3x3 Blindfold", "444bf": "4x4x4 Blindfold", "555bf": "5x5x5 Blindfold", "333mbf": "3x3x3 Multi-Blind", "333fm": "3x3x3 Fewest Moves", "333oh": "3x3x3 One-handed", "clock": "Clock", "minx": "Megaminx", "pyram": "Pyraminx", "skewb": "Skewb", "sq1": "Square-1", "fto": "Face Turning Octahedron"}
         ses = client("sesv2")
         emailUUIDs = {}
         emailNotif = defaultdict(set)
